@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أزمة القطاع الصحي | جزر منعزلة وأرواح تُهدر</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: { 900: '#090e17', 800: '#151f2e', 700: '#1e293b' },
+                        blood: { 500: '#e11d48', 600: '#be123c', 700: '#9f1239', 900: '#4c0519' },
+                    },
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { background-color: #090e17; color: #f1f5f9; overflow-x: hidden; scroll-behavior: smooth; }
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(9, 14, 23, 0.85), rgba(9, 14, 23, 1)),
+                        url('https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover fixed;
+        }
+        .crisis-image { border-left: 4px solid #e11d48; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #be123c; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #151f2e; }
+        
+        /* تأثيرات التسجيل الصوتي */
+        .record-pulse { animation: pulseRecord 1.5s infinite; }
+        @keyframes pulseRecord { 0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(225, 29, 72, 0); } 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-blood-500 selection:text-white custom-scrollbar">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-900/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-black tracking-tight text-white">القطاع <span class="text-blood-500">المنعزل</span></span>
+            </div>
+            <div class="hidden md:flex gap-6 font-bold text-sm text-slate-400">
+                <a href="#problems" class="hover:text-blood-500 transition">تداعيات الكارثة</a>
+                <a href="#simulator" class="hover:text-blood-500 transition">محاكاة الواقع</a>
+                <a href="#data" class="hover:text-blood-500 transition">لغة الأرقام</a>
+                <a href="#feedback" class="hover:text-blood-500 transition">شارك بشهادتك</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blood-900/50 border border-blood-500/30 text-blood-400 text-sm font-bold mb-6">
+            <span class="animate-pulse w-2 h-2 rounded-full bg-blood-500"></span> تحقيق استقصائي تفاعلي
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+            جزر طبية منعزلة..<br><span class="text-blood-500 drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]">وأرواح تدفع الثمن</span>
+        </h1>
+        <p class="text-xl text-slate-300 max-w-3xl font-semibold leading-relaxed">
+            لا توجد لغة تواصل بين أي جهة طبية وأخرى. عيادات، مستشفيات، ومعامل تعمل كدولة مستقلة. والضحية هو "المريض" الذي يدور في حلقات مفرغة بحثاً عن سرير أو تشخيص دقيق.
+        </p>
+    </header>
+
+    <!-- The Problems Grid -->
+    <section id="problems" class="max-w-7xl mx-auto px-6 py-24 space-y-16">
+        <div class="border-r-4 border-blood-500 pr-6">
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-2">أركان الكارثة الأربعة</h2>
+            <p class="text-slate-400 text-lg">هذا ما يحدث يومياً في المستشفيات والعيادات بسبب غياب نظام يربط البيانات.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- المشكلة 1 -->
+            <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
+                <img src="https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="روشتات ورقية">
+                <div class="p-6 sm:w-3/5 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-white mb-3"><i class="fas fa-file-prescription text-blood-500 ml-2"></i>تبخر التاريخ المرضي</h3>
+                    <p class="text-slate-400 leading-relaxed">المريض ينتقل لمستشفى جديد، فيبدأ الطبيب من الصفر. لا أحد يعلم الأمراض المزمنة أو الأدوية السابقة، مما يفتح الباب لتعارض دوائي قاتل.</p>
+                </div>
+            </div>
+
+            <!-- المشكلة 2 -->
+            <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
+                <img src="https://images.pexels.com/photos/8942084/pexels-photo-8942084.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="إسعاف">
+                <div class="p-6 sm:w-3/5 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-white mb-3"><i class="fas fa-ambulance text-blood-500 ml-2"></i>الضياع في الطوارئ</h3>
+                    <p class="text-slate-400 leading-relaxed">في الحوادث، الإسعاف يدور في دوائر مفرغة للبحث عن سرير عناية شاغر. "الوقت الذهبي" لإنقاذ المصاب يُهدر في الشوارع بين أبواب المستشفيات المغلقة.</p>
+                </div>
+            </div>
+
+            <!-- المشكلة 3 -->
+            <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
+                <img src="https://images.pexels.com/photos/2383010/pexels-photo-2383010.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="مستشفى مزدحم">
+                <div class="p-6 sm:w-3/5 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-white mb-3"><i class="fas fa-hospital-user text-blood-500 ml-2"></i>متاهة الأقسام (البهدلة)</h3>
+                    <p class="text-slate-400 leading-relaxed">داخل المستشفى الجامعي الواحد، الأقسام منعزلة. المريض يُنقل على كرسي متحرك حاملاً ملفاً ورقياً ضخماً ليقف في طوابير جديدة لنقله من الباطنة للعظام.</p>
+                </div>
+            </div>
+
+            <!-- المشكلة 4 -->
+            <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
+                <img src="https://images.pexels.com/photos/3820281/pexels-photo-3820281.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="مريض فقير">
+                <div class="p-6 sm:w-3/5 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-white mb-3"><i class="fas fa-money-bill-wave text-blood-500 ml-2"></i>الاستنزاف المادي للفقراء</h3>
+                    <p class="text-slate-400 leading-relaxed">كل طبيب يرفض الاعتراف بأشعة الطبيب السابق ويطلب إعادتها! هذا التكرار يدمر ميزانية الأسر البسيطة ويستنزف من يبيعون ما يملكون للعلاج.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Chaos Simulator -->
+    <section id="simulator" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="bg-dark-800 p-8 md:p-12 rounded-3xl border border-blood-500/20 shadow-2xl">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10 pb-6 border-b border-white/10 gap-6">
+                <div>
+                    <span class="text-sm font-bold text-blood-400 tracking-wider">محاكاة تفاعلية للواقع</span>
+                    <h2 class="text-3xl font-black text-white mt-1">كيف ينهار النظام الحالي؟</h2>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="simulateCrisis('patient')" id="simPatient" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-blood-600 text-white transition shadow-lg">معاناة المريض 👤</button>
+                    <button onclick="simulateCrisis('doctor')" id="simDoctor" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-dark-700 text-slate-300 hover:bg-dark-900 transition border border-white/5">عجز الطبيب 🩺</button>
+                    <button onclick="simulateCrisis('ambulance')" id="simAmbulance" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-dark-700 text-slate-300 hover:bg-dark-900 transition border border-white/5">ضياع الإسعاف 🚑</button>
+                </div>
+            </div>
+
+            <div id="crisisDisplay" class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <!-- Data injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Analytics (Charts) -->
+    <section id="data" class="max-w-7xl mx-auto px-6 py-12">
+        <div class="bg-dark-800 p-8 rounded-3xl border border-white/5 shadow-2xl">
+            <h2 class="text-2xl font-black text-white mb-8 text-center">لغة الأرقام: الخسائر الناتجة عن غياب الربط</h2>
+            <div class="relative h-80 max-w-4xl mx-auto">
+                <canvas id="crisisChart"></canvas>
+            </div>
+            <p class="text-center text-slate-500 text-sm mt-6">* بيانات مبنية على تقديرات ميدانية وشهادات حية من واقع غرف الاستقبال والطوارئ.</p>
+        </div>
+    </section>
+
+    <!-- Secure Feedback & Voice Record Form -->
+    <section id="feedback" class="max-w-3xl mx-auto px-6 py-24">
+        <div class="bg-dark-800 p-8 md:p-12 rounded-3xl border border-blood-500/30 shadow-[0_0_30px_rgba(225,29,72,0.1)]">
+            <h2 class="text-3xl font-black text-center text-white mb-2">وثِّق شهادتك من الواقع</h2>
+            <p class="text-center text-slate-400 mb-8">هل أنت طبيب عانى من نقص البيانات؟ أم مريض ضاع في دوامة المستشفيات؟ صوتك هو ما يكشف الحقيقة.</p>
+
+            <form id="secureForm" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <!-- حقول مخفية لخدمة FormSubmit -->
+                <input type="hidden" name="_subject" value="🚨 شهادة استقصائية جديدة من الموقع">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div>
+                    <label class="block text-slate-300 font-bold mb-2">الاسم بالكامل (إجباري):</label>
+                    <input type="text" name="الاسم" required placeholder="أدخل اسمك الكريم..." class="w-full px-5 py-4 rounded-xl bg-dark-900 border border-white/10 text-white focus:outline-none focus:border-blood-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-bold mb-2">رقم الهاتف (اختياري - للتواصل):</label>
+                    <input type="tel" name="الهاتف" placeholder="010..." class="w-full px-5 py-4 rounded-xl bg-dark-900 border border-white/10 text-white focus:outline-none focus:border-blood-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-bold mb-2">موقعك في هذه المنظومة (إجباري):</label>
+                    <select name="الصفة" required class="w-full px-5 py-4 rounded-xl bg-dark-900 border border-white/10 text-white focus:outline-none focus:border-blood-500 transition appearance-none">
+                        <option value="" disabled selected>اختر صفتك الحالية...</option>
+                        <option value="طبيب">طبيب / طاقم طبي في مستشفى</option>
+                        <option value="مريض">مريض / مرافق واجه أزمة حقيقية</option>
+                        <option value="أخرى">أخرى (مطور، باحث، مسعف)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-bold mb-2">تفاصيل المعاناة والقصة الكاملة (إجباري):</label>
+                    <textarea name="القصة" rows="5" minlength="50" required placeholder="احكِ لنا ما رأيته بالضبط... (القصة يجب ألا تقل عن 50 حرفاً لتوثيقها بشكل سليم)" class="w-full px-5 py-4 rounded-xl bg-dark-900 border border-white/10 text-white focus:outline-none focus:border-blood-500 transition custom-scrollbar"></textarea>
+                </div>
+
+                <div class="pt-4 border-t border-white/10">
+                    <label class="block text-slate-300 font-bold mb-3">هل تفضل حكي المعاناة بصوتك؟ (آمن ومشفّر):</label>
+                    <button type="button" id="recordBtn" class="w-full py-4 rounded-xl border-2 border-dashed border-slate-500 text-slate-300 font-bold hover:bg-white/5 transition flex items-center justify-center gap-3">
+                        <i class="fas fa-microphone text-xl"></i> <span id="recordText">اضغط هنا لبدء التسجيل الصوتي للشهادة</span>
+                    </button>
+                    <audio id="audioPlayback" controls class="w-full mt-4 hidden rounded-lg"></audio>
+                    <input type="file" id="audioFile" name="التسجيل_الصوتي" style="display: none;" accept="audio/*">
+                </div>
+
+                <button type="submit" class="w-full py-5 rounded-xl bg-blood-600 hover:bg-blood-700 text-white text-xl font-black shadow-lg shadow-blood-900/50 transition transform hover:-translate-y-1">
+                    إرسال وتوثيق الشهادة
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 py-8 border-t border-white/5 text-center text-slate-500 text-sm">
+        <p>جزء من تحقيق استقصائي حول واقع القطاع الصحي © 2026. المنظومة تحتاج لإنقاذ.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. نظام الحماية (Anti-Tampering)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 73) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+        }
+
+        // 2. حماية وتوجيه الإيميل (ضع إيميلك الحقيقي هنا)
+        const mySecretEmail = "YusefHaisam36@gmail.com"; 
+        document.getElementById('secureForm').addEventListener('submit', function(e) {
+            this.action = "https://formsubmit.co/" + mySecretEmail;
+        });
+
+        // 3. المحاكاة التفاعلية للكارثة (Simulator)
+        const crisisData = {
+            patient: {
+                title: "رحلة العذاب: المريض",
+                desc: "مريض ينتقل من عيادة لمعمل أشعة ثم لطوارئ حكومية.",
+                steps: [
+                    "يحمل حقيبة بلاستيكية مليئة بروشتات وأشعة قديمة ممزقة.",
+                    "يقف في الاستقبال والطبيب يسأله: 'عندك سكر؟'، وهو غائب عن الوعي ولا أحد من أهله يعرف الإجابة.",
+                    "يضطر لدفع تكاليف تحاليل كاملة من الصفر لأن طبيب الطوارئ لا يعترف بتحاليل المعمل الخارجي."
+                ],
+                alert: "النتيجة: استنزاف مادي، تأخر في التشخيص، وتدهور الحالة."
+            },
+            doctor: {
+                title: "العجز التام: الطبيب",
+                desc: "طبيب الاستقبال يواجه حالة حرجة ولا يملك أي معلومات.",
+                steps: [
+                    "يستقبل الحالة بدون أي (Medical History) مسبق.",
+                    "يصف حقنة مسكنة، ليكتشف لاحقاً أن المريض لديه حساسية قاتلة من مادتها الفعالة.",
+                    "يحاول تحويل المريض لقسم الجراحة، فيضطر لملء 4 استمارات ورقية وإرسال الممرض للبحث عن سرير في المبنى الآخر."
+                ],
+                alert: "النتيجة: أخطاء طبية خارجة عن الإرادة، وإحباط وظيفي قاتل."
+            },
+            ambulance: {
+                title: "المسار المجهول: الإسعاف",
+                desc: "حادث على طريق سريع، وسائق الإسعاف يبحث عن منقذ.",
+                steps: [
+                    "يحمل المصاب ويتجه لأقرب مستشفى حكومي بشكل عشوائي (لا يوجد نظام توجيه).",
+                    "يصل للمستشفى ليصدم برد مسؤول الاستقبال: 'مفيش سراير عناية فاضية، روح مستشفى تانية'.",
+                    "يستمر في القيادة بين 3 مستشفيات مختلفة، بينما ينزف المريض بالخلف."
+                ],
+                alert: "النتيجة: ضياع الساعة الذهبية (Golden Hour) ووفاة حالات كان يمكن إنقاذها."
+            }
+        };
+
+        function simulateCrisis(role) {
+            // Update Buttons
+            ['Patient', 'Doctor', 'Ambulance'].forEach(r => {
+                const btn = document.getElementById('sim' + r);
+                const roleLower = r.toLowerCase();
+                if (roleLower === role) {
+                    btn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-blood-600 text-white transition shadow-lg";
+                } else {
+                    btn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-dark-700 text-slate-300 hover:bg-dark-900 transition border border-white/5";
+                }
+            });
+
+            // Update Content
+            const data = crisisData[role];
+            document.getElementById('crisisDisplay').innerHTML = `
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">${data.title}</h3>
+                        <p class="text-slate-400">${data.desc}</p>
+                    </div>
+                    <div class="space-y-4">
+                        ${data.steps.map((step, index) => `
+                            <div class="flex gap-4 items-start p-4 bg-dark-900 rounded-xl border border-white/5">
+                                <span class="text-blood-500 font-black text-xl">0${index + 1}</span>
+                                <p class="text-slate-300 leading-relaxed">${step}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="bg-blood-900/20 p-8 rounded-3xl border border-blood-500/30 text-center">
+                    <i class="fas fa-skull-crossbones text-5xl text-blood-500 mb-4 opacity-80"></i>
+                    <h4 class="text-xl font-bold text-blood-400 mb-2">النهاية الحتمية:</h4>
+                    <p class="text-white leading-relaxed font-semibold">${data.alert}</p>
+                </div>
+            `;
+        }
+
+        // 4. رسم بياني للكارثة (Chart.js)
+        window.addEventListener('DOMContentLoaded', () => {
+            simulateCrisis('patient'); // تهيئة المحاكاة
+
+            const ctx = document.getElementById('crisisChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['أخطاء تشخيصية (غياب التاريخ)', 'وفيات الطوارئ (ضياع الوقت)', 'تكاليف مهدرة (إعادة الفحوصات)'],
+                    datasets: [{
+                        label: 'نسبة الضرر في المنظومة الحالية (%)',
+                        data: [65, 80, 90],
+                        backgroundColor: ['#e11d48', '#be123c', '#9f1239'],
+                        borderRadius: 8,
+                        borderWidth: 1,
+                        borderColor: '#ff4d4d'
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#f1f5f9', font: { family: 'Cairo' } } },
+                        tooltip: { backgroundColor: '#151f2e', titleFont: { family: 'Cairo' }, bodyFont: { family: 'Cairo' } }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#94a3b8', callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { ticks: { color: '#94a3b8', font: { family: 'Cairo' } }, grid: { display: false } }
+                    }
+                }
+            });
+        });
+
+        // 5. التسجيل الصوتي
+        let mediaRecorder;
+        let audioChunks = [];
+        const recordBtn = document.getElementById('recordBtn');
+        const recordText = document.getElementById('recordText');
+        const audioPlayback = document.getElementById('audioPlayback');
+        const audioFileInput = document.getElementById('audioFile');
+        let isRecording = false;
+
+        recordBtn.addEventListener('click', async () => {
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                        audioPlayback.src = URL.createObjectURL(audioBlob);
+                        audioPlayback.style.display = 'block';
+
+                        const file = new File([audioBlob], "crisis_story.mp3", { type: 'audio/mp3', lastModified: Date.now() });
+                        const container = new DataTransfer();
+                        container.items.add(file);
+                        audioFileInput.files = container.files;
+                    };
+
+                    mediaRecorder.start();
+                    isRecording = true;
+                    recordBtn.classList.add('record-pulse', 'bg-blood-900/30', 'border-blood-500', 'text-blood-400');
+                    recordBtn.classList.remove('border-slate-500', 'text-slate-300');
+                    recordText.innerText = "جاري التسجيل... اضغط هنا للإيقاف";
+                } catch (err) {
+                    alert('عفواً، يرجى السماح للمتصفح باستخدام الميكروفون لتسجيل الشهادة.');
+                }
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                recordBtn.classList.remove('record-pulse', 'bg-blood-900/30', 'border-blood-500', 'text-blood-400');
+                recordBtn.classList.add('border-slate-500', 'text-emerald-400');
+                recordBtn.innerHTML = '<i class="fas fa-check-circle text-xl"></i> <span>تم تسجيل الشهادة بنجاح (مرفقة)</span>';
+            }
+        });
+    </script>
+</body>
+</html>
