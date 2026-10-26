@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أزمة القطاع الصحي | جزر منعزلة وأرواح تُهدر</title>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag.js?id=G-231G6H968Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-231G6H968Q');
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,8 +47,6 @@
         .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #be123c; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #151f2e; }
-        
-        /* تأثيرات التسجيل الصوتي */
         .record-pulse { animation: pulseRecord 1.5s infinite; }
         @keyframes pulseRecord { 0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(225, 29, 72, 0); } 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); } }
     </style>
@@ -82,7 +89,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- المشكلة 1 -->
             <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
                 <img src="https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="روشتات ورقية">
                 <div class="p-6 sm:w-3/5 flex flex-col justify-center">
@@ -91,7 +97,6 @@
                 </div>
             </div>
 
-            <!-- المشكلة 2 -->
             <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
                 <img src="https://images.pexels.com/photos/8942084/pexels-photo-8942084.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="إسعاف">
                 <div class="p-6 sm:w-3/5 flex flex-col justify-center">
@@ -100,7 +105,6 @@
                 </div>
             </div>
 
-            <!-- المشكلة 3 -->
             <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
                 <img src="https://images.pexels.com/photos/2383010/pexels-photo-2383010.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="مستشفى مزدحم">
                 <div class="p-6 sm:w-3/5 flex flex-col justify-center">
@@ -109,7 +113,6 @@
                 </div>
             </div>
 
-            <!-- المشكلة 4 -->
             <div class="bg-dark-800 rounded-2xl overflow-hidden border border-white/5 hover:border-blood-500/50 transition flex flex-col sm:flex-row shadow-2xl">
                 <img src="https://images.pexels.com/photos/3820281/pexels-photo-3820281.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full sm:w-2/5 object-cover crisis-image" alt="مريض فقير">
                 <div class="p-6 sm:w-3/5 flex flex-col justify-center">
@@ -141,7 +144,7 @@
         </div>
     </section>
 
-    <!-- Data Analytics (Charts) -->
+    <!-- Data Analytics -->
     <section id="data" class="max-w-7xl mx-auto px-6 py-12">
         <div class="bg-dark-800 p-8 rounded-3xl border border-white/5 shadow-2xl">
             <h2 class="text-2xl font-black text-white mb-8 text-center">لغة الأرقام: الخسائر الناتجة عن غياب الربط</h2>
@@ -197,7 +200,7 @@
                     <input type="file" id="audioFile" name="التسجيل_الصوتي" style="display: none;" accept="audio/*">
                 </div>
 
-                <button type="submit" class="w-full py-5 rounded-xl bg-blood-600 hover:bg-blood-700 text-white text-xl font-black shadow-lg shadow-blood-900/50 transition transform hover:-translate-y-1">
+                <button type="submit" id="submitBtn" class="w-full py-5 rounded-xl bg-blood-600 hover:bg-blood-700 text-white text-xl font-black shadow-lg shadow-blood-900/50 transition transform hover:-translate-y-1">
                     إرسال وتوثيق الشهادة
                 </button>
             </form>
@@ -211,21 +214,27 @@
 
     <!-- Scripts -->
     <script>
-        // 1. نظام الحماية (Anti-Tampering)
+        // 1. نظام الحماية
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false; // F12
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 73) return false; // Ctrl+Shift+I
-            if(e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
+            if(e.ctrlKey && e.keyCode == 85) return false;
         }
 
-        // 2. حماية وتوجيه الإيميل (ضع إيميلك الحقيقي هنا)
+        // 2. إرسال البيانات وإظهار شاشة التحميل (Loading State)
         const mySecretEmail = "YusefHaisam36@gmail.com"; 
-        document.getElementById('secureForm').addEventListener('submit', function(e) {
+        const secureForm = document.getElementById('secureForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        secureForm.addEventListener('submit', function(e) {
             this.action = "https://formsubmit.co/" + mySecretEmail;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70', 'cursor-wait');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري إرسال الشهادة ورفع الملف الصوتي... برجاء الانتظار';
         });
 
-        // 3. المحاكاة التفاعلية للكارثة (Simulator)
+        // 3. المحاكاة التفاعلية
         const crisisData = {
             patient: {
                 title: "رحلة العذاب: المريض",
@@ -260,7 +269,6 @@
         };
 
         function simulateCrisis(role) {
-            // Update Buttons
             ['Patient', 'Doctor', 'Ambulance'].forEach(r => {
                 const btn = document.getElementById('sim' + r);
                 const roleLower = r.toLowerCase();
@@ -271,7 +279,6 @@
                 }
             });
 
-            // Update Content
             const data = crisisData[role];
             document.getElementById('crisisDisplay').innerHTML = `
                 <div class="space-y-6">
@@ -296,9 +303,9 @@
             `;
         }
 
-        // 4. رسم بياني للكارثة (Chart.js)
+        // 4. رسم بياني
         window.addEventListener('DOMContentLoaded', () => {
-            simulateCrisis('patient'); // تهيئة المحاكاة
+            simulateCrisis('patient');
 
             const ctx = document.getElementById('crisisChart').getContext('2d');
             new Chart(ctx, {
